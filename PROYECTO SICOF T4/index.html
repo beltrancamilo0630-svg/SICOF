@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SICOF | Compra en el supermercado sin filas</title>
+<meta name="description" content="SICOF: escanea tus productos, paga con tu tarjeta SICOF y sal con tu código QR, sin filas.">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;500;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css"></head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="brand" href="index.html"><img src="logo.jpeg" alt="SICOF"></a>
+  <nav class="main" aria-label="Principal">
+    <a href="#catalogo">Productos</a><a href="#resenas">Reseñas</a>
+    <button class="lnk" id="walletopen">Mi tarjeta · <span id="saldo">$0</span></button>
+    <span id="quien" style="padding:8px 4px;color:var(--muted)"></span><button class="lnk" id="navout">Cerrar sesión</button>
+    <button class="lnk cartbtn" id="cartopen">Carrito (<span id="cn">0</span>)</button>
+  </nav></div></header>
+<section class="hero"><div class="wrap">
+  <nav class="crumbs" aria-label="Ruta de navegación"><ol id="crumbs"><li><a href="index.html">Inicio</a></li></ol></nav>
+  <h1>Tu mercado <span class="typed" id="typed" aria-live="polite"></span></h1>
+  <p id="hola">Escanea tus productos, paga con tu tarjeta SICOF y sal con tu código QR. Precios en pesos colombianos.</p>
+  <a class="btn" href="#catalogo">Empezar mi compra</a><a class="btn alt" href="#resenas">Ver reseñas</a>
+</div></section>
+<main class="wrap">
+  <section class="block" id="catalogo">
+    <h2>Productos</h2><p class="sub">Elige lo que necesitas, o escanea el código de barras del producto.</p>
+    <div class="tools"><div class="chips" id="chips"></div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn sec" id="scanopen">Escanear código de barras</button>
+      <input id="psearch" type="search" placeholder="Buscar producto" aria-label="Buscar producto"></div></div>
+    <div class="cards" id="cards"></div>
+  </section>
+  <section class="block" id="resenas">
+    <h2>Reseñas de clientes</h2><p class="sub" id="ravg"></p><div id="rlist"></div>
+    <form class="grid" id="rform" novalidate>
+      <label>Tu nombre<input id="rname" maxlength="40" required></label>
+      <label>Calificación<select id="rstars"><option value="5">5 estrellas</option><option value="4">4 estrellas</option><option value="3">3 estrellas</option><option value="2">2 estrellas</option><option value="1">1 estrella</option></select></label>
+      <label style="grid-column:1/-1">Tu experiencia<textarea id="rtext" rows="3" maxlength="300" required></textarea></label>
+      <div><button class="btn sec" type="submit">Publicar reseña</button></div>
+    </form><p class="msg" id="rmsg" role="status"></p>
+  </section>
+</main>
+
+<dialog id="cart"><div class="in">
+  <h2>Tu carrito</h2><div id="clines"></div>
+  <p class="total">Total: <span id="ctotal">$0</span></p>
+  <p class="sub" style="margin:0">Saldo de tu tarjeta: <b id="csaldo">$0</b></p><p class="msg" id="cmsg" role="status"></p>
+  <button class="btn sec" id="cbuy">Pagar con mi tarjeta</button> <button class="btn small" id="cgo" hidden>Recargar ahora</button> <button class="btn small" id="cclose">Seguir comprando</button>
+</div></dialog>
+
+<dialog id="wallet"><div class="in">
+  <div class="tarj" id="tarj"></div>
+  <h3>Recargar saldo</h3>
+  <div class="chips" id="recchips" style="margin-bottom:10px"></div>
+  <form class="grid" id="recform" novalidate>
+    <label>Otro valor (COP)<input id="recmonto" type="number" min="5000" max="1000000" step="1000"></label>
+    <div><button class="btn sec" type="submit">Recargar</button></div>
+  </form><p class="msg" id="recmsg" role="status"></p>
+  <p class="sub" style="font-size:.85rem">Demostración: aquí se conectaría una pasarela de pago (PSE, Nequi o tarjeta bancaria).</p>
+  <h3>Movimientos</h3><div id="movs"></div>
+  <h3>Mis compras</h3><div id="compras"></div>
+  <p><button class="btn small" id="wclose">Cerrar</button></p>
+</div></dialog>
+
+<dialog id="qrd"><div class="in" style="text-align:center">
+  <h2 id="qrt">¡Pago exitoso!</h2><p class="sub" id="qrinfo"></p>
+  <div class="qrbox" id="qrbox"></div>
+  <p><b id="qrcod" style="letter-spacing:.06em"></b></p>
+  <p class="sub">Muestra este código QR en la salida para que lo escaneen. Solo sirve una vez.</p>
+  <button class="btn sec" id="qrclose">Listo</button>
+</div></dialog>
+<footer>© 2026 SICOF · Compras sin filas</footer>
+<script src="common.js"></script><script src="qr.js"></script><script src="scanner.js"></script><script src="app.js"></script>
+</body></html>

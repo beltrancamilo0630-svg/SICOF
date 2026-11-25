@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Panel de administración | SICOF</title><meta name="robots" content="noindex">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;500;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css"></head>
+<body class="admin">
+<div class="shell">
+  <aside class="side">
+    <div class="lg"><img src="logo.jpeg" alt="SICOF"></div><small>Panel de administración<br><b id="aquien"></b></small>
+    <button data-t="resumen" aria-current="true">Resumen</button><button data-t="productos">Productos</button>
+    <button data-t="pedidos">Pedidos</button><button data-t="notifs">Notificaciones<span class="badge" id="nbadge" hidden></span></button>
+    <button data-t="usuarios">Clientes</button>
+    <button class="out" id="aout">Cerrar sesión</button>
+  </aside>
+  <main class="main-a">
+    <section data-s="resumen"><h1>Resumen</h1><div class="stats" id="stats"></div>
+      <div class="panel"><h2>Stock bajo (menos de 30)</h2><div class="tablewrap"><table><thead><tr><th>Producto</th><th>Stock</th></tr></thead><tbody id="low"></tbody></table></div></div></section>
+    <section data-s="productos" hidden><h1>Productos</h1>
+      <form class="grid" id="pform" novalidate><input type="hidden" id="pid">
+        <label>Nombre<input id="pname" maxlength="60"></label>
+        <label>Categoría<select id="pcat"></select></label>
+        <label>Precio (COP)<input id="pprice" type="number" min="1" step="50"></label>
+        <label>Stock<input id="pstock" type="number" min="0" step="1"></label>
+        <label>Código de barras<input id="pcode" inputmode="numeric" maxlength="14" placeholder="Ej: 7701234567890"></label>
+        <div><button class="btn sec" id="psave" type="submit">Agregar producto</button> <button class="btn small" id="pcancel" type="button" hidden>Cancelar</button></div>
+      </form><p class="msg" id="pmsg" role="status"></p>
+      <div class="tools"><input id="psearch" type="search" placeholder="Buscar producto, categoría o código" aria-label="Buscar"><strong id="pcount"></strong></div>
+      <div class="tablewrap"><table><thead><tr><th>Producto</th><th>Categoría</th><th>Precio</th><th>Stock</th><th>Código</th><th>Acciones</th></tr></thead><tbody id="ptable"></tbody></table></div></section>
+    <section data-s="pedidos" hidden><h1>Pedidos</h1>
+      <div class="panel"><h2>Validar QR de salida</h2>
+        <form class="grid" id="vform" novalidate><label>Código del QR<input id="vcode" autocomplete="off" placeholder="SICOF-XXXXXXXXXX"></label>
+          <div><button class="btn sec" type="submit">Validar</button> <button class="btn small" type="button" id="vscan">Escanear con cámara</button></div></form>
+        <p class="msg" id="vmsg" role="status"></p></div>
+      <div class="tablewrap"><table><thead><tr><th>Fecha</th><th>Cliente</th><th>Productos</th><th>Total</th><th>Código</th><th>Estado</th></tr></thead><tbody id="otable"></tbody></table></div></section>
+    <section data-s="notifs" hidden><h1>Notificaciones</h1>
+      <p><button class="btn sec" id="nread">Marcar todas como leídas</button></p><div id="nlist"></div></section>
+    <section data-s="usuarios" hidden><h1>Clientes registrados</h1><div class="tablewrap"><table><thead><tr><th>Nombre</th><th>Correo</th><th>Tipo</th><th>Saldo tarjeta</th><th>Registro</th><th>Acciones</th></tr></thead><tbody id="utable"></tbody></table></div></section>
+  </main>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+<script src="common.js"></script><script src="scanner.js"></script><script src="admin.js"></script>
+</body></html>

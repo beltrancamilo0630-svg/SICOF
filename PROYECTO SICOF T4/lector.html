@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SICOF - Lector de códigos</title>
+  <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      max-width: 420px;
+      margin: 20px auto;
+      padding: 0 16px;
+    }
+    #lector {
+      width: 100%;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 8px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-top: 12px;
+      font-size: 18px;
+      box-sizing: border-box;
+    }
+    #estado {
+      color: #555;
+      min-height: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h2>Escanear producto</h2>
+
+  <div id="lector"></div>
+  <button id="btnIniciar">Iniciar cámara</button>
+  <button id="btnDetener" disabled>Detener cámara</button>
+  <p id="estado"></p>
+
+  <input type="text" id="codigo" placeholder="El código aparecerá aquí" readonly>
+
+  <script src="lector.js"></script>
+</body>
+</html>
